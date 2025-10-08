@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mappa Concettuale - Integrali Indefiniti</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .mappa {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .centro {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+        
+        .centro h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        .definizione {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .formula-principale {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.3em;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .metodi {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .metodo {
+            border: 3px solid;
+            border-radius: 15px;
+            padding: 25px;
+            background: white;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .metodo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .metodo.immediati {
+            border-color: #3498db;
+            background: linear-gradient(to bottom, #ffffff 0%, #e3f2fd 100%);
+        }
+        
+        .metodo.sostituzione {
+            border-color: #e74c3c;
+            background: linear-gradient(to bottom, #ffffff 0%, #ffebee 100%);
+        }
+        
+        .metodo.parti {
+            border-color: #f39c12;
+            background: linear-gradient(to bottom, #ffffff 0%, #fff3e0 100%);
+        }
+        
+        .metodo.razionali {
+            border-color: #9b59b6;
+            background: linear-gradient(to bottom, #ffffff 0%, #f3e5f5 100%);
+        }
+        
+        .metodo.notevoli {
+            border-color: #27ae60;
+            background: linear-gradient(to bottom, #ffffff 0%, #e8f5e9 100%);
+        }
+        
+        .metodo h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid currentColor;
+        }
+        
+        .metodo.immediati h3 { color: #3498db; }
+        .metodo.sostituzione h3 { color: #e74c3c; }
+        .metodo.parti h3 { color: #f39c12; }
+        .metodo.razionali h3 { color: #9b59b6; }
+        .metodo.notevoli h3 { color: #27ae60; }
+        
+        .formula {
+            background: rgba(0,0,0,0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            border-left: 4px solid;
+        }
+        
+        .metodo.immediati .formula { border-left-color: #3498db; }
+        .metodo.sostituzione .formula { border-left-color: #e74c3c; }
+        .metodo.parti .formula { border-left-color: #f39c12; }
+        .metodo.razionali .formula { border-left-color: #9b59b6; }
+        .metodo.notevoli .formula { border-left-color: #27ae60; }
+        
+        .esempio {
+            background: #fffbea;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #f39c12;
+        }
+        
+        .esempio strong {
+            color: #f39c12;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .note {
+            font-style: italic;
+            color: #555;
+            margin-top: 10px;
+            font-size: 0.95em;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .metodi {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔢 Integrali Indefiniti 🔢</h1>
+        
+        <div class="mappa">
+            <div class="centro">
+                <h2>DEFINIZIONE</h2>
+                <div class="definizione">
+                    L'<strong>integrale indefinito</strong> di una funzione f(x) è l'insieme di tutte le primitive di f(x), cioè tutte le funzioni F(x) la cui derivata è f(x).
+                </div>
+                <div class="formula-principale">
+                    ∫ f(x) dx = F(x) + c
+                </div>
+                <div class="definizione" style="margin-top: 15px;">
+                    dove F'(x) = f(x) e <strong>c</strong> è una costante arbitraria
+                </div>
+            </div>
+            
+            <div class="metodi">
+                <div class="metodo immediati">
+                    <h3>📘 1. INTEGRALI IMMEDIATI</h3>
+                    <p>Si applicano le formule dirette di integrazione</p>
+                    
+                    <div class="formula">
+                        ∫ x<sup>n</sup> dx = x<sup>n+1</sup>/(n+1) + c
+                        <br>(con n ≠ -1)
+                    </div>
+                    
+                    <div class="esempio">
+                        <strong>Esempio:</strong>
+                        ∫ x³ dx = x⁴/4 + c
+                        <br><br>
+                        ∫ 5x² dx = 5 · x³/3 + c = (5x³)/3 + c
+                    </div>
+                    
+                    <div class="note">
+                        💡 Altri immediati: ∫ eˣ dx = eˣ + c, ∫ sin(x) dx = -cos(x) + c
+                    </div>
+                </div>
+                
+                <div class="metodo sostituzione">
+                    <h3>🔄 2. INTEGRAZIONE PER SOSTITUZIONE</h3>
+                    <p>Si sostituisce una parte dell'integrale con una nuova variabile</p>
+                    
+                    <div class="formula">
+                        Se t = g(x), allora dt = g'(x) dx
+                        <br>
+                        ∫ f(g(x)) · g'(x) dx = ∫ f(t) dt
+                    </div>
+                    
+                    <div class="esempio">
+                        <strong>Esempio:</strong>
+                        ∫ 2x · cos(x²) dx
+                        <br><br>
+                        Pongo t = x², quindi dt = 2x dx
+                        <br>
+                        ∫ cos(t) dt = sin(t) + c = sin(x²) + c
+                    </div>
+                    
+                    <div class="note">
+                        💡 Utile quando c'è una funzione composta e la sua derivata
+                    </div>
+                </div>
+                
+                <div class="metodo parti">
+                    <h3>🔨 3. INTEGRAZIONE PER PARTI</h3>
+                    <p>Si applica quando l'integrando è un prodotto di funzioni</p>
+                    
+                    <div class="formula">
+                        ∫ f(x) · g'(x) dx = f(x) · g(x) - ∫ f'(x) · g(x) dx
+                    </div>
+                    
+                    <div class="esempio">
+                        <strong>Esempio:</strong>
+                        ∫ x · eˣ dx
+                        <br><br>
+                        Pongo f(x) = x → f'(x) = 1
+                        <br>g'(x) = eˣ → g(x) = eˣ
+                        <br><br>
+                        = x · eˣ - ∫ 1 · eˣ dx = x · eˣ - eˣ + c
+                        <br>= eˣ(x - 1) + c
+                    </div>
+                    
+                    <div class="note">
+                        💡 Schema LIATE: Logaritmi, Inverse trig., Algebriche, Trig., Esponenziali
+                    </div>
+                </div>
+                
+                <div class="metodo razionali">
+                    <h3>📐 4. FUNZIONI RAZIONALI</h3>
+                    <p>Si scompone la frazione in fratti semplici</p>
+                    
+                    <div class="formula">
+                        Se grado(N) ≥ grado(D): prima divisione
+                        <br>
+                        Poi scomposizione in fratti semplici
+                    </div>
+                    
+                    <div class="esempio">
+                        <strong>Esempio semplice:</strong>
+                        ∫ 1/(x² - 1) dx
+                        <br><br>
+                        Scompongo: 1/(x² - 1) = 1/((x-1)(x+1))
+                        <br>
+                        = A/(x-1) + B/(x+1) = 1/2·[1/(x-1) - 1/(x+1)]
+                        <br><br>
+                        = 1/2 · [ln|x-1| - ln|x+1|] + c
+                        <br>= 1/2 · ln|(x-1)/(x+1)| + c
+                    </div>
+                    
+                    <div class="note">
+                        💡 Richiede scomposizione del denominatore e determinazione dei coefficienti
+                    </div>
+                </div>
+                
+                <div class="metodo notevoli">
+                    <h3>⭐ 5. INTEGRALI NOTEVOLI</h3>
+                    <p>Formule da ricordare per casi specifici</p>
+                    
+                    <div class="formula">
+                        ∫ 1/x dx = ln|x| + c
+                        <br><br>
+                        ∫ 1/(x² + a²) dx = 1/a · arctan(x/a) + c
+                        <br><br>
+                        ∫ 1/√(a² - x²) dx = arcsin(x/a) + c
+                    </div>
+                    
+                    <div class="esempio">
+                        <strong>Esempio:</strong>
+                        ∫ 1/(x² + 4) dx
+                        <br><br>
+                        Riconosco la forma con a² = 4, quindi a = 2
+                        <br><br>
+                        = 1/2 · arctan(x/2) + c
+                    </div>
+                    
+                    <div class="note">
+                        💡 Memorizzare le formule notevoli velocizza la risoluzione
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
